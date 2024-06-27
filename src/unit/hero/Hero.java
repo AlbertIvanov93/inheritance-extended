@@ -3,8 +3,6 @@ package unit.hero;
 import unit.Unit;
 import unit.enemy.Enemy;
 
-import java.util.List;
-
 public abstract class Hero extends Unit {
 
     public Hero(int x, int y) {
@@ -21,10 +19,7 @@ public abstract class Hero extends Unit {
     }
 
     private Enemy findNearestEnemy(Unit[][] units) {
-        for (Unit[] row : units) {
-            for (Unit unit : row) {
 
-            }
-        }
+        return null;
     }
 }

@@ -1,5 +1,7 @@
 package unit.enemy;
 
+import unit.Unit;
+
 public class Zombie extends Enemy{
 
     private static int zombiesNumber;
@@ -15,6 +17,11 @@ public class Zombie extends Enemy{
 
     public Zombie(int x, int y) {
         super(x, y);
+    }
+
+    @Override
+    public void move(Unit[][] units) {
+
     }
 
     @Override

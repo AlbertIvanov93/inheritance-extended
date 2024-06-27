@@ -1,7 +1,5 @@
 package unit;
 
-import java.util.List;
-
 public abstract class Unit {
     private String name;
     private int health;
@@ -16,15 +14,15 @@ public abstract class Unit {
         this.y = y;
     }
 
-    public void attack(Unit unit) {
-        unit.takeDamage(attack);
+    public void attack(Unit[][] battleField) {
+        //unit.takeDamage(attack);
     }
 
     public boolean isAlive() {
         return health > 0;
     }
 
-    public abstract void move(Unit[][] units);
+    public abstract void move(Unit[][] battleField);
 
     public abstract void takeDamage(int damage);
 
