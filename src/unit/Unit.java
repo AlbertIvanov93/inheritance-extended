@@ -1,5 +1,11 @@
 package unit;
 
+import unit.enemy.Enemy;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public abstract class Unit {
     private String name;
     private int health;
@@ -23,6 +29,60 @@ public abstract class Unit {
     }
 
     public abstract void move(Unit[][] battleField);
+
+    private void findNearestOpponent(Unit[][] battleField) {
+        boolean isNearestOpponentFound = false;
+        List<Cell> cellsToCheck = new ArrayList<>();
+        List<Cell> checkedCells = new ArrayList<>();
+        List<Unit> opponentsFound = new ArrayList<>();
+
+        cellsToCheck.add(new Cell(this.x, this.y));
+
+        while (!isNearestOpponentFound) {
+            for (Cell cell : cellsToCheck) {
+                if (isMovePossible(cell.getX() + 1, cell.getY(), battleField)
+                        && battleField[cell.getX() + 1][cell.getY()] != null
+                        && battleField[cell.getX() + 1][cell.getY()] instanceof Enemy enemy) {
+                    opponentsFound.add(enemy);
+                }
+
+            }
+        }
+
+
+        if (battleField[this.getX() + 1][this.getY()] instanceof Enemy enemy) {
+            opponents.add(enemy);
+        }
+        if (battleField[this.getX() - 1][this.getY()] instanceof Enemy enemy) {
+            opponents.add(enemy);
+        }
+        if (battleField[this.getX()][this.getY() + 1] instanceof Enemy enemy) {
+            opponents.add(enemy);
+        }
+        if (battleField[this.getX()][this.getY() - 1] instanceof Enemy enemy) {
+            opponents.add(enemy);
+        }
+
+        if (opponents.isEmpty()) {
+
+        } else if (opponents.size() == 1) {
+
+        } else {
+
+        }
+    }
+
+    private boolean isMovePossible(int x, int y, Unit[][] battleField) {
+        //if cell is out of border
+        if (x < 0 || x > battleField[0].length || y < 0 || y > battleField.length) {
+            return false;
+            //if cell is empty
+        } else if (battleField[y][x] != null) {
+            return true;
+        }
+
+        return false;
+    }
 
     public abstract void takeDamage(int damage);
 
@@ -80,5 +140,23 @@ public abstract class Unit {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    private class Cell {
+        private int x;
+        private int y;
+
+        public Cell(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
     }
 }

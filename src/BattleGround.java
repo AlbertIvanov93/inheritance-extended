@@ -5,11 +5,14 @@ import unit.hero.Hero;
 import unit.hero.Warrior;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BattleGround {
 
-    private static Unit[][] battleField = new Unit[8][8];
+    private static int fieldHeight = 8;
+    private static int fieldWidth = 8;
+    private static Unit[][] battleField = new Unit[fieldHeight][fieldWidth];
     private static List<Hero> heroes = new ArrayList<>();
     private static List<Enemy> enemies = new ArrayList<>();
 
@@ -31,18 +34,23 @@ public class BattleGround {
     }
 
     private static void refreshBattleField() {
+        //delete all Units from battleField
         for (Unit[] row : battleField) {
-            for (Unit[] cell : battleField) {
-                cell = null;
-            }
+            Arrays.fill(row, null);
         }
 
+        //add heroes
         for (Hero hero : heroes) {
             battleField[hero.getX()][hero.getY()] = hero;
         }
 
+        //add enemies
         for (Enemy enemy : enemies) {
             battleField[enemy.getX()][enemy.getY()] = enemy;
         }
+    }
+
+    private static void printField() {
+        //System.out.println("+-+ +-+ +-+ +-+");
     }
 }

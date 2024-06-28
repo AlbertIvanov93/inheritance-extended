@@ -18,8 +18,8 @@ public abstract class Hero extends Unit {
 
     }
 
-    private Enemy findNearestEnemy(Unit[][] units) {
+    @Override
+    public void findNearestOpponent(Unit[][] battleField) {
 
-        return null;
     }
 }
